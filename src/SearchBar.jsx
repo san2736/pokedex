@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-function SearchBar({ search, setSearch }) {
-  return (
-    <input
-      type="text"
-      placeholder="Search Pokémon..."
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-    />
-  );
-}
-
-export default SearchBar;
-=======
->>>>>>> final
 import { ALL_TYPES, themeFor } from "./typeData.js";
 
 function SearchBar({ search, onSearch, type, onType, disabled }) {
@@ -64,7 +47,3 @@ function SearchBar({ search, onSearch, type, onType, disabled }) {
 }
 
 export default SearchBar;
-<<<<<<< HEAD
-=======
->>>>>>> 5279e85 (Initial commit from Visual SourceSafe)
->>>>>>> final

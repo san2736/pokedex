@@ -1,8 +1,8 @@
-import { useState, useEffect, useMemo } from "react";
-import PokemonCard from "./PokemonCard.jsx";
-import SearchBar from "./SearchBar.jsx";
+import { useEffect, useMemo, useState } from "react";
 import Loader from "./Loader.jsx";
 import ErrorBox from "./ErrorBox.jsx";
+import SearchBar from "./SearchBar.jsx";
+import PokemonCard from "./PokemonCard.jsx";
 import DetailModal from "./DetailModal.jsx";
 import IntroScreen from "./IntroScreen.jsx";
 import MusicPlayer from "./MusicPlayer.jsx";
@@ -85,78 +85,78 @@ function App() {
       {!introDone && <IntroScreen onDone={() => setIntroDone(true)} />}
       <MusicPlayer active={introDone} />
 
-      <div className={`app ${introDone ? "" : "hold"}`}>
-        <div className="blob blob-1" />
-        <div className="blob blob-2" />
+    <div className={`app ${introDone ? "" : "hold"}`}>
+      <div className="blob blob-1" />
+      <div className="blob blob-2" />
 
-        <header className="hero">
-          <h1 className="logo">
-            Poké<span>dex</span>
-          </h1>
-          <p className="tagline">
-            Live data from PokéAPI · {pokemon.length || "…"} cards loaded
-          </p>
-        </header>
+      <header className="hero">
+        <h1 className="logo">
+          Poké<span>dex</span>
+        </h1>
+        <p className="tagline">
+          Live data from PokéAPI · {pokemon.length || "…"} cards loaded
+        </p>
+      </header>
 
-        <SearchBar
-          search={search}
-          onSearch={setSearch}
-          type={type}
-          onType={setType}
-          disabled={loading || !!error}
+      <SearchBar
+        search={search}
+        onSearch={setSearch}
+        type={type}
+        onType={setType}
+        disabled={loading || !!error}
+      />
+
+      {loading && <Loader />}
+      {error && <ErrorBox message={error} onRetry={() => setAttempt((a) => a + 1)} />}
+
+      {!loading && !error && (
+        <>
+          {filtered.length > 0 && (
+            <PowerChart
+              list={filtered}
+              onPick={(p, origin) => setSelected({ p, origin })}
+            />
+          )}
+
+          {filtered.length === 0 ? (
+            <div className="empty">
+              <div className="empty-ball" />
+              <h3>No Pokémon found</h3>
+              <p>Try a different name or clear the type filter.</p>
+              <button
+                className="btn"
+                onClick={() => {
+                  setSearch("");
+                  setType("all");
+                }}
+              >
+                Reset filters
+              </button>
+            </div>
+          ) : (
+            <section className="grid">
+              {filtered.map((p, i) => (
+                <PokemonCard
+                  key={p.id}
+                  p={p}
+                  index={i}
+                  onClick={(pk, origin) => setSelected({ p: pk, origin })}
+                />
+              ))}
+            </section>
+          )}
+        </>
+      )}
+
+      {selected && (
+        <DetailModal
+          key={selected.p.id}
+          p={selected.p}
+          origin={selected.origin}
+          onClose={() => setSelected(null)}
         />
-
-        {loading && <Loader />}
-        {error && <ErrorBox message={error} onRetry={() => setAttempt((a) => a + 1)} />}
-
-        {!loading && !error && (
-          <>
-            {filtered.length > 0 && (
-              <PowerChart
-                list={filtered}
-                onPick={(p, origin) => setSelected({ p, origin })}
-              />
-            )}
-
-            {filtered.length === 0 ? (
-              <div className="empty">
-                <div className="empty-ball" />
-                <h3>No Pokémon found</h3>
-                <p>Try a different name or clear the type filter.</p>
-                <button
-                  className="btn"
-                  onClick={() => {
-                    setSearch("");
-                    setType("all");
-                  }}
-                >
-                  Reset filters
-                </button>
-              </div>
-            ) : (
-              <section className="grid">
-                {filtered.map((p, i) => (
-                  <PokemonCard
-                    key={p.id}
-                    p={p}
-                    index={i}
-                    onClick={(pk, origin) => setSelected({ p: pk, origin })}
-                  />
-                ))}
-              </section>
-            )}
-          </>
-        )}
-
-        {selected && (
-          <DetailModal
-            key={selected.p.id}
-            p={selected.p}
-            origin={selected.origin}
-            onClose={() => setSelected(null)}
-          />
-        )}
-      </div>
+      )}
+    </div>
     </>
   );
 }
