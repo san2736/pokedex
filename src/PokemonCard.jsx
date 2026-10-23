@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-function PokemonCard({ pokemon, isSelected, onSelect }) {
-  return (
-    <div
-      className={isSelected ? "card selected" : "card"}
-      onClick={() => onSelect(pokemon)}
-    >
-      <img src={pokemon.image} alt={pokemon.name} />
-      <h3>{pokemon.name}</h3>
-
-      <div className="types">
-        {pokemon.types.map((type) => (
-          <span key={type} className="badge">
-            {type}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export default PokemonCard;
-=======
 import { useRef } from "react";
 import { themeFor, TYPE_WEAKNESS, TYPE_RESISTANCE } from "./typeData.js";
 
@@ -181,4 +158,3 @@ function PokemonCard({ p, onClick, index = 0, flat = false }) {
 }
 
 export default PokemonCard;
->>>>>>> 5279e85 (Initial commit from Visual SourceSafe)

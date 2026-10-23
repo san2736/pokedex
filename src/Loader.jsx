@@ -1,10 +1,4 @@
 function Loader() {
-<<<<<<< HEAD
-  return <p>Loading Pokémon...</p>;
-}
-
-export default Loader;
-=======
   return (
     <div className="loader" role="status" aria-live="polite">
       <div className="pokeball">
@@ -16,4 +10,3 @@ export default Loader;
 }
 
 export default Loader;
->>>>>>> 5279e85 (Initial commit from Visual SourceSafe)

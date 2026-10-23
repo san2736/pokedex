@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import { useState, useEffect } from "react";
-import PokemonCard from "./PokemonCard.jsx";
-import SearchBar from "./SearchBar.jsx";
-import Loader from "./Loader.jsx";
-import ErrorBox from "./ErrorBox.jsx";
-=======
 import { useEffect, useMemo, useState } from "react";
 import Loader from "./Loader.jsx";
 import ErrorBox from "./ErrorBox.jsx";
@@ -16,7 +9,7 @@ import MusicPlayer from "./MusicPlayer.jsx";
 import PowerChart from "./PowerChart.jsx";
 import "./App.css";
 
-const LIMIT = 151;
+const LIMIT = 24;
 
 // Turns the raw PokeAPI response into the small shape the UI needs.
 function clean(d) {
@@ -41,7 +34,6 @@ function clean(d) {
     moves: d.moves.slice(0, 4).map((m) => m.move.name),
   };
 }
->>>>>>> 5279e85 (Initial commit from Visual SourceSafe)
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
@@ -49,14 +41,6 @@ function App() {
   const [error, setError] = useState(null);
   const [attempt, setAttempt] = useState(0);
   const [search, setSearch] = useState("");
-<<<<<<< HEAD
-  const [selected, setSelected] = useState(null);
-
-  useEffect(() => {
-    async function load() {
-      try {
-        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20");
-=======
   const [type, setType] = useState("all");
   const [selected, setSelected] = useState(null);
   const [introDone, setIntroDone] = useState(false);
@@ -68,69 +52,12 @@ function App() {
       setError(null);
       try {
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${LIMIT}`);
->>>>>>> 5279e85 (Initial commit from Visual SourceSafe)
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
 
         const details = await Promise.all(
           data.results.map((p) => fetch(p.url).then((r) => r.json()))
         );
-<<<<<<< HEAD
-
-        const cleaned = details.map((d) => ({
-          name: d.name,
-          image: d.sprites.other["official-artwork"].front_default,
-          types: d.types.map((t) => t.type.name),
-          stats: d.stats.map((s) => ({ name: s.stat.name, value: s.base_stat })),
-        }));
-
-        setPokemon(cleaned);
-      } catch (e) {
-        setError(e.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    load();
-  }, [attempt]);
-
-  function handleRetry() {
-    setError(null);
-    setLoading(true);
-    setAttempt(attempt + 1);
-  }
-
-  if (loading) return <Loader />;
-  if (error) return <ErrorBox message={error} onRetry={handleRetry} />;
-
-  const filtered = pokemon.filter((p) =>
-    p.name.includes(search.toLowerCase())
-  );
-
-  return (
-    <div>
-      <h1>Pokédex Dashboard</h1>
-
-      <SearchBar search={search} setSearch={setSearch} />
-
-      {filtered.length === 0 ? (
-        <p>No Pokémon found</p>
-      ) : (
-        <div className="grid">
-          {filtered.map((p) => (
-            <PokemonCard
-              key={p.name}
-              pokemon={p}
-              isSelected={selected?.name === p.name}
-              onSelect={setSelected}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Part C's <StatsChart stats={selected?.stats} /> will replace this */}
-      <p>{selected ? `Selected: ${selected.name}` : "Click a card to see stats"}</p>
-=======
         if (!cancelled) setPokemon(details.map(clean));
       } catch (e) {
         if (!cancelled) setError(e.message || "Something went wrong");
@@ -143,6 +70,13 @@ function App() {
       cancelled = true;
     };
   }, [attempt]);
+
+  // how many loaded Pokémon have each type (a dual-type Pokémon counts for both)
+  const counts = useMemo(() => {
+    const c = {};
+    pokemon.forEach((p) => p.types.forEach((t) => (c[t] = (c[t] || 0) + 1)));
+    return c;
+  }, [pokemon]);
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -177,6 +111,8 @@ function App() {
         type={type}
         onType={setType}
         disabled={loading || !!error}
+        counts={counts}
+        total={pokemon.length}
       />
 
       {loading && <Loader />}
@@ -229,14 +165,9 @@ function App() {
           onClose={() => setSelected(null)}
         />
       )}
->>>>>>> 5279e85 (Initial commit from Visual SourceSafe)
     </div>
     </>
   );
 }
 
-<<<<<<< HEAD
 export default App;
-=======
-export default App;
->>>>>>> 5279e85 (Initial commit from Visual SourceSafe)
