@@ -12,3 +12,4 @@ function ErrorBox({ message, onRetry }) {
 }
 
 export default ErrorBox;
+
