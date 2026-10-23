@@ -9,7 +9,7 @@ import MusicPlayer from "./MusicPlayer.jsx";
 import PowerChart from "./PowerChart.jsx";
 import "./App.css";
 
-const LIMIT = 151;
+const LIMIT = 24;
 
 // Turns the raw PokeAPI response into the small shape the UI needs.
 function clean(d) {
@@ -71,6 +71,13 @@ function App() {
     };
   }, [attempt]);
 
+  // how many loaded Pokémon have each type (a dual-type Pokémon counts for both)
+  const counts = useMemo(() => {
+    const c = {};
+    pokemon.forEach((p) => p.types.forEach((t) => (c[t] = (c[t] || 0) + 1)));
+    return c;
+  }, [pokemon]);
+
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     return pokemon.filter(
@@ -104,6 +111,8 @@ function App() {
         type={type}
         onType={setType}
         disabled={loading || !!error}
+        counts={counts}
+        total={pokemon.length}
       />
 
       {loading && <Loader />}

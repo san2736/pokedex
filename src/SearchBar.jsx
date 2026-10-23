@@ -1,6 +1,6 @@
 import { ALL_TYPES, themeFor } from "./typeData.js";
 
-function SearchBar({ search, onSearch, type, onType, disabled }) {
+function SearchBar({ search, onSearch, type, onType, disabled, counts = {}, total = 0 }) {
   return (
     <div className={`searchbar ${disabled ? "is-disabled" : ""}`}>
       <label className="search-input">
@@ -28,19 +28,25 @@ function SearchBar({ search, onSearch, type, onType, disabled }) {
           onClick={() => onType("all")}
           disabled={disabled}
         >
-          All
+          All{total ? <small>{total}</small> : null}
         </button>
-        {ALL_TYPES.map((t) => (
-          <button
-            key={t}
-            className={`type-pill ${type === t ? "active" : ""}`}
-            style={{ "--pill": themeFor(t).to }}
-            onClick={() => onType(t)}
-            disabled={disabled}
-          >
-            {t}
-          </button>
-        ))}
+        {ALL_TYPES.map((t) => {
+          const n = counts[t] ?? 0;
+          const empty = total > 0 && n === 0; // nothing of this type in the loaded Pokémon
+          return (
+            <button
+              key={t}
+              className={`type-pill ${type === t ? "active" : ""} ${empty ? "empty" : ""}`}
+              style={{ "--pill": themeFor(t).to }}
+              onClick={() => onType(t)}
+              disabled={disabled || empty}
+              title={empty ? `No ${t}-type Pokémon in the ${total} loaded` : `${n} ${t}-type`}
+            >
+              {t}
+              {total > 0 && <small>{n}</small>}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
