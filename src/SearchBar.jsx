@@ -1,4 +1,6 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 function SearchBar({ search, setSearch }) {
   return (
     <input
@@ -12,6 +14,7 @@ function SearchBar({ search, setSearch }) {
 
 export default SearchBar;
 =======
+>>>>>>> final
 import { ALL_TYPES, themeFor } from "./typeData.js";
 
 function SearchBar({ search, onSearch, type, onType, disabled }) {
@@ -61,4 +64,7 @@ function SearchBar({ search, onSearch, type, onType, disabled }) {
 }
 
 export default SearchBar;
+<<<<<<< HEAD
+=======
 >>>>>>> 5279e85 (Initial commit from Visual SourceSafe)
+>>>>>>> final

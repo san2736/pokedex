@@ -149,6 +149,21 @@ body {
   gap: 28px;
 }
 
+<<<<<<< HEAD
+/* ---------- trading card ---------- */
+.card {
+  --from: #ffe45c; --to: #e8b800; --ink: #4a3a00;
+  --rx: 0deg; --ry: 0deg; --lift: 0px; --zoom: 1;
+  position: relative;
+  aspect-ratio: 5 / 7.2;
+  border-radius: 18px;
+  padding: 10px;
+  background: linear-gradient(145deg, var(--from), var(--to));
+  border: 4px solid #1b1b2f;
+  box-shadow: 0 10px 0 rgba(27, 27, 47, 0.9), 0 18px 30px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  color: var(--ink);
+=======
 /* ---------- trading card: silver frame + type-coloured body (like the real card) ---------- */
 .card {
   --from: #ffe45c; --to: #e8b800; --ink: #4a3a00;
@@ -164,6 +179,7 @@ body {
   box-shadow: 0 8px 0 rgba(0, 0, 0, 0.35), 0 18px 28px rgba(0, 0, 0, 0.28);
   cursor: pointer;
   color: var(--text);
+>>>>>>> final
   transform: perspective(900px) translateY(var(--lift)) rotateX(var(--rx)) rotateY(var(--ry)) scale(var(--zoom));
   transition: transform 0.15s ease-out, box-shadow 0.25s ease;
   animation: pop 0.55s cubic-bezier(.2,.9,.3,1.2) both;
@@ -173,7 +189,11 @@ body {
 @keyframes pop { from { opacity: 0; transform: translateY(40px) scale(0.9) rotateX(25deg); } }
 .card:hover, .card:focus-visible {
   --lift: -12px; --zoom: 1.05;
+<<<<<<< HEAD
+  box-shadow: 0 22px 0 rgba(27, 27, 47, 0.9), 0 34px 44px rgba(0, 0, 0, 0.35);
+=======
   box-shadow: 0 20px 0 rgba(0, 0, 0, 0.3), 0 34px 44px rgba(0, 0, 0, 0.35);
+>>>>>>> final
   z-index: 3;
 }
 /* flat = the copy shown inside the detail view */
@@ -188,7 +208,11 @@ body {
 .card-shine {
   position: absolute;
   inset: 0;
+<<<<<<< HEAD
+  border-radius: 14px;
+=======
   border-radius: 12px;
+>>>>>>> final
   background: radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(255, 255, 255, 0.7), transparent 55%);
   opacity: 0;
   transition: opacity 0.25s;
@@ -202,6 +226,56 @@ body {
   height: 100%;
   min-height: 0;
   overflow: hidden;
+<<<<<<< HEAD
+  border-radius: 12px;
+  border: 2px solid var(--ink);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.35), transparent 50%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.08));
+  padding: 10px 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.35);
+  border: 2px solid var(--ink);
+  border-radius: 10px 10px 4px 4px;
+  padding: 3px 10px;
+}
+.card-head h3 {
+  margin: 0;
+  font: 800 15px "Gabarito", sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.hp { font: 800 16px "Gabarito"; }
+.hp small { font-size: 9px; margin-left: 2px; }
+
+.art {
+  position: relative;
+  flex: 0 0 38%;
+  min-height: 0;
+  overflow: hidden; /* artwork can never poke outside the frame */
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.75), var(--to) 90%);
+  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.25);
+}
+.art-ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  height: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  opacity: 0.3;
+=======
   border-radius: 6px;
   background:
     radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.5), transparent 55%),
@@ -240,18 +314,56 @@ body {
   border-radius: 3px;
   background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.95), var(--body) 90%);
   box-shadow: inset 0 0 0 1px #6c7279, inset 0 0 16px rgba(0, 0, 0, 0.22);
+>>>>>>> final
 }
 .art img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
+  padding: 5%;
+=======
   padding: 4%;
+>>>>>>> final
   object-fit: contain;
   filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.3));
   transition: transform 0.3s;
 }
 .card:hover .art img { transform: scale(1.07); }
+<<<<<<< HEAD
+.dex-no {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  font: 800 11px "Gabarito";
+  background: var(--ink);
+  color: #fff;
+  padding: 1px 7px;
+  border-radius: 8px;
+}
+
+.meta {
+  margin: 0;
+  text-align: center;
+  font-size: 9.5px;
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  padding: 3px 0;
+}
+
+.attack {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.atk-name { font: 800 14px "Gabarito"; text-transform: capitalize; }
+.atk-dmg { font: 800 18px "Gabarito"; }
+.energy { display: inline-flex; gap: 3px; }
+=======
 .meta {
   margin: -3px 0 2px;
   padding: 2px 4px;
@@ -288,10 +400,25 @@ body {
 .atk-name { font: 800 14.5px "Gabarito"; text-transform: capitalize; }
 .atk-dmg { font: 800 17px "Gabarito"; }
 .energy { display: inline-flex; gap: 2px; }
+>>>>>>> final
 .energy i {
   width: 14px;
   height: 14px;
   border-radius: 50%;
+<<<<<<< HEAD
+  background: radial-gradient(circle at 35% 30%, #fff, var(--ink));
+  border: 1.5px solid var(--ink);
+}
+
+.flavor {
+  margin: 0;
+  font-size: 9.5px;
+  font-style: italic;
+  opacity: 0.85;
+  text-align: center;
+}
+
+=======
   background: radial-gradient(circle at 35% 30%, #fff, #d6d6d2);
   border: 1.5px solid #151515;
 }
@@ -299,11 +426,22 @@ body {
 .card-foot .energy i:first-child { background: radial-gradient(circle at 35% 30%, #fff, #d6d6d2); }
 
 /* footer strip: weakness / resistance / retreat */
+>>>>>>> final
 .card-foot {
   margin-top: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;
+<<<<<<< HEAD
+  border-top: 2px solid var(--ink);
+  padding-top: 5px;
+  font-size: 8px;
+  text-align: center;
+}
+.card-foot span { display: block; font-weight: 600; margin-bottom: 3px; text-transform: lowercase; }
+.card-foot .chips, .card-foot .energy { display: flex; justify-content: center; gap: 3px; min-height: 14px; }
+.chip { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--ink); display: block; }
+=======
   border-top: 1px solid rgba(0, 0, 0, 0.4);
   padding-top: 4px;
   font-size: 7.5px;
@@ -313,6 +451,7 @@ body {
 .card-foot .chips, .card-foot .energy { display: flex; justify-content: center; align-items: center; gap: 3px; min-height: 14px; }
 .card-foot em { font: 800 9px "Gabarito"; }
 .chip { width: 13px; height: 13px; border-radius: 50%; border: 1.5px solid #151515; display: block; }
+>>>>>>> final
 
 /* ---------- loader / error / empty ---------- */
 .loader, .errorbox, .empty {
@@ -563,6 +702,8 @@ body {
   .detail { width: 100%; max-width: 520px; min-width: 0; transform: translateY(-30px) scale(0.96); }
   .power li { grid-template-columns: 32px 80px 1fr 38px; }
 }
+<<<<<<< HEAD
+=======
 
 /* ---------- intro video + music ---------- */
 .intro {
@@ -696,3 +837,4 @@ body {
 .app.hold { visibility: hidden; height: 100vh; overflow: hidden; }
 .app:not(.hold) { animation: siteIn 0.8s ease both; }
 @keyframes siteIn { from { opacity: 0; transform: translateY(16px); } }
+>>>>>>> final
