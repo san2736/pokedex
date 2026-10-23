@@ -36,7 +36,7 @@ function SearchBar({ search, onSearch, type, onType, disabled, counts = {}, tota
           return (
             <button
               key={t}
-              className={`type-pill ${type === t ? "active" : ""} ${empty ? "empty" : ""}`}
+              className={`type-pill ${type === t ? "active" : ""} ${empty ? "no-match" : ""}`}
               style={{ "--pill": themeFor(t).to }}
               onClick={() => onType(t)}
               disabled={disabled || empty}
