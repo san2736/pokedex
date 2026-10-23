@@ -149,6 +149,7 @@ body {
   gap: 28px;
 }
 
+<<<<<<< HEAD
 /* ---------- trading card ---------- */
 .card {
   --from: #ffe45c; --to: #e8b800; --ink: #4a3a00;
@@ -162,6 +163,23 @@ body {
   box-shadow: 0 10px 0 rgba(27, 27, 47, 0.9), 0 18px 30px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   color: var(--ink);
+=======
+/* ---------- trading card: silver frame + type-coloured body (like the real card) ---------- */
+.card {
+  --from: #ffe45c; --to: #e8b800; --ink: #4a3a00;
+  --body: #a9dc5c; --body2: #6cbb3a; --text: #161616;
+  --rx: 0deg; --ry: 0deg; --lift: 0px; --zoom: 1;
+  position: relative;
+  aspect-ratio: 5 / 7.2;
+  border-radius: 14px;
+  padding: 8px;
+  /* brushed-silver border */
+  background: linear-gradient(135deg, #f6f8f9 0%, #b3b9bf 26%, #eef1f3 50%, #a2a8ae 76%, #e4e7e9 100%);
+  border: 2px solid #7d838a;
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.35), 0 18px 28px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  color: var(--text);
+>>>>>>> final
   transform: perspective(900px) translateY(var(--lift)) rotateX(var(--rx)) rotateY(var(--ry)) scale(var(--zoom));
   transition: transform 0.15s ease-out, box-shadow 0.25s ease;
   animation: pop 0.55s cubic-bezier(.2,.9,.3,1.2) both;
@@ -171,7 +189,11 @@ body {
 @keyframes pop { from { opacity: 0; transform: translateY(40px) scale(0.9) rotateX(25deg); } }
 .card:hover, .card:focus-visible {
   --lift: -12px; --zoom: 1.05;
+<<<<<<< HEAD
   box-shadow: 0 22px 0 rgba(27, 27, 47, 0.9), 0 34px 44px rgba(0, 0, 0, 0.35);
+=======
+  box-shadow: 0 20px 0 rgba(0, 0, 0, 0.3), 0 34px 44px rgba(0, 0, 0, 0.35);
+>>>>>>> final
   z-index: 3;
 }
 /* flat = the copy shown inside the detail view */
@@ -186,7 +208,11 @@ body {
 .card-shine {
   position: absolute;
   inset: 0;
+<<<<<<< HEAD
   border-radius: 14px;
+=======
+  border-radius: 12px;
+>>>>>>> final
   background: radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(255, 255, 255, 0.7), transparent 55%);
   opacity: 0;
   transition: opacity 0.25s;
@@ -200,6 +226,7 @@ body {
   height: 100%;
   min-height: 0;
   overflow: hidden;
+<<<<<<< HEAD
   border-radius: 12px;
   border: 2px solid var(--ink);
   background:
@@ -248,18 +275,63 @@ body {
   border-radius: 50%;
   border: 3px solid var(--ink);
   opacity: 0.3;
+=======
+  border-radius: 6px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.5), transparent 55%),
+    linear-gradient(170deg, var(--body), var(--body2));
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3);
+  padding: 7px 9px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* header: stage tag, name, HP, type orb */
+.card-head { display: flex; align-items: center; gap: 6px; position: relative; padding-top: 7px; }
+.card-stage {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  font: 800 6.5px "Gabarito", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+.card-head h3 { flex: 1; margin: 0; font: 800 16px "Gabarito", sans-serif; text-transform: capitalize; line-height: 1.1; }
+.hp { font: 800 17px "Gabarito"; display: inline-flex; align-items: baseline; gap: 2px; }
+.hp small { font-size: 8px; }
+.type-orb { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #1b1b1b; box-shadow: inset 0 -3px 0 rgba(0,0,0,.2); }
+
+/* art window with silver frame — artwork can never poke outside it */
+.art {
+  position: relative;
+  flex: 0 0 43%;
+  min-height: 0;
+  overflow: hidden;
+  border: 3px solid #cdd2d6;
+  outline: 1px solid #6c7279;
+  border-radius: 3px;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.95), var(--body) 90%);
+  box-shadow: inset 0 0 0 1px #6c7279, inset 0 0 16px rgba(0, 0, 0, 0.22);
+>>>>>>> final
 }
 .art img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
   padding: 5%;
+=======
+  padding: 4%;
+>>>>>>> final
   object-fit: contain;
   filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.3));
   transition: transform 0.3s;
 }
 .card:hover .art img { transform: scale(1.07); }
+<<<<<<< HEAD
 .dex-no {
   position: absolute;
   right: 4px;
@@ -291,10 +363,49 @@ body {
 .atk-name { font: 800 14px "Gabarito"; text-transform: capitalize; }
 .atk-dmg { font: 800 18px "Gabarito"; }
 .energy { display: inline-flex; gap: 3px; }
+=======
+.meta {
+  margin: -3px 0 2px;
+  padding: 2px 4px;
+  text-align: center;
+  font-size: 7.2px;
+  letter-spacing: 0.2px;
+  color: #2a2d30;
+  background: linear-gradient(#dfe2e5, #b9bec3);
+  border: 1px solid #6c7279;
+  border-top: 0;
+}
+
+/* ability + attacks */
+.ability { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+.badge {
+  font: 800 8px "Gabarito", sans-serif;
+  color: #fff;
+  background: linear-gradient(#e8403a, #b81f1a);
+  border-radius: 3px 8px 8px 3px;
+  padding: 2px 9px 2px 6px;
+  border: 1px solid #7a1411;
+}
+.ability b { font: 800 14px "Gabarito", sans-serif; color: #c3201b; }
+.card[style*="--text: #ffffff"] .ability b { color: #ff8a84; }
+.ability-text { margin: 0; font-size: 9px; line-height: 1.25; }
+
+.attack {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 2px;
+}
+.atk-name { font: 800 14.5px "Gabarito"; text-transform: capitalize; }
+.atk-dmg { font: 800 17px "Gabarito"; }
+.energy { display: inline-flex; gap: 2px; }
+>>>>>>> final
 .energy i {
   width: 14px;
   height: 14px;
   border-radius: 50%;
+<<<<<<< HEAD
   background: radial-gradient(circle at 35% 30%, #fff, var(--ink));
   border: 1.5px solid var(--ink);
 }
@@ -307,11 +418,21 @@ body {
   text-align: center;
 }
 
+=======
+  background: radial-gradient(circle at 35% 30%, #fff, #d6d6d2);
+  border: 1.5px solid #151515;
+}
+.energy i:first-child { background: radial-gradient(circle at 35% 30%, #fff8, var(--to) 70%); }
+.card-foot .energy i:first-child { background: radial-gradient(circle at 35% 30%, #fff, #d6d6d2); }
+
+/* footer strip: weakness / resistance / retreat */
+>>>>>>> final
 .card-foot {
   margin-top: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;
+<<<<<<< HEAD
   border-top: 2px solid var(--ink);
   padding-top: 5px;
   font-size: 8px;
@@ -320,6 +441,17 @@ body {
 .card-foot span { display: block; font-weight: 600; margin-bottom: 3px; text-transform: lowercase; }
 .card-foot .chips, .card-foot .energy { display: flex; justify-content: center; gap: 3px; min-height: 14px; }
 .chip { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--ink); display: block; }
+=======
+  border-top: 1px solid rgba(0, 0, 0, 0.4);
+  padding-top: 4px;
+  font-size: 7.5px;
+  text-align: center;
+}
+.card-foot span { display: block; font-weight: 600; margin-bottom: 2px; }
+.card-foot .chips, .card-foot .energy { display: flex; justify-content: center; align-items: center; gap: 3px; min-height: 14px; }
+.card-foot em { font: 800 9px "Gabarito"; }
+.chip { width: 13px; height: 13px; border-radius: 50%; border: 1.5px solid #151515; display: block; }
+>>>>>>> final
 
 /* ---------- loader / error / empty ---------- */
 .loader, .errorbox, .empty {
@@ -570,3 +702,139 @@ body {
   .detail { width: 100%; max-width: 520px; min-width: 0; transform: translateY(-30px) scale(0.96); }
   .power li { grid-template-columns: 32px 80px 1fr 38px; }
 }
+<<<<<<< HEAD
+=======
+
+/* ---------- intro video + music ---------- */
+.intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  z-index: 9999;
+  background: #000;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.8s ease;
+}
+.intro.out { opacity: 0; pointer-events: none; }
+.intro-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(28px) brightness(0.7) saturate(1.3);
+  transform: scale(1.15);
+}
+.intro-video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* landscape video: fills a laptop screen, letterboxes on other shapes */
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.intro.play .intro-video, .intro.out .intro-video { opacity: 1; }
+.intro.gate .intro-bg { opacity: 0; }
+
+.gate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+  background:
+    radial-gradient(circle at 20% 15%, var(--blue) 0 18%, transparent 18.2%),
+    radial-gradient(circle at 85% 90%, var(--red) 0 16%, transparent 16.2%),
+    var(--yellow);
+}
+.gate-ball {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 7px solid var(--ink);
+  background: linear-gradient(180deg, var(--red) 46%, var(--ink) 46% 54%, #fff 54%);
+  position: relative;
+  animation: bob 1.4s ease-in-out infinite;
+  box-shadow: 0 12px 0 rgba(0, 0, 0, 0.25);
+}
+.gate-ball::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  border: 7px solid var(--ink);
+}
+@keyframes bob { 50% { transform: translateY(-14px) rotate(8deg); } }
+.gate-title {
+  font: 400 clamp(56px, 10vw, 110px) "Bangers", cursive;
+  letter-spacing: 4px;
+  color: var(--yellow);
+  -webkit-text-stroke: 6px var(--blue-deep);
+  paint-order: stroke fill;
+  text-shadow: 0 8px 0 var(--blue-deep);
+  line-height: 1;
+}
+.gate-title b { color: #fff; font-weight: 400; }
+.gate-start {
+  font: 800 18px "Gabarito", sans-serif;
+  background: var(--ink);
+  padding: 10px 26px;
+  border-radius: 999px;
+  animation: blink 1.1s steps(2, start) infinite;
+}
+@keyframes blink { 50% { opacity: 0.35; } }
+
+.intro-skip {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font: 800 14px "Gabarito", sans-serif;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  padding: 8px 18px;
+  cursor: pointer;
+}
+.intro-skip:hover { background: rgba(0, 0, 0, 0.8); }
+.intro-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: rgba(255, 255, 255, 0.2); }
+.intro-bar div { height: 100%; background: var(--yellow); }
+
+.music-btn {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 40;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  font-size: 22px;
+  cursor: pointer;
+}
+.music-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+
+/* the site is mounted (so data loads) but invisible until the intro is over */
+.app.hold { visibility: hidden; height: 100vh; overflow: hidden; }
+.app:not(.hold) { animation: siteIn 0.8s ease both; }
+@keyframes siteIn { from { opacity: 0; transform: translateY(16px); } }
+>>>>>>> final

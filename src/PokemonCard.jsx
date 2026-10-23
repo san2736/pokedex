@@ -1,9 +1,39 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+function PokemonCard({ pokemon, isSelected, onSelect }) {
+  return (
+    <div
+      className={isSelected ? "card selected" : "card"}
+      onClick={() => onSelect(pokemon)}
+    >
+      <img src={pokemon.image} alt={pokemon.name} />
+      <h3>{pokemon.name}</h3>
+
+      <div className="types">
+        {pokemon.types.map((type) => (
+          <span key={type} className="badge">
+            {type}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default PokemonCard;
+=======
+>>>>>>> final
 import { useRef } from "react";
 import { themeFor, TYPE_WEAKNESS, TYPE_RESISTANCE } from "./typeData.js";
 
 const cap = (s) => s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
+<<<<<<< HEAD
 // Energy dots: one filled circle per cost point.
+=======
+// Energy dots: first one in the Pokémon's type colour, the rest colourless.
+>>>>>>> final
 function Energy({ n }) {
   return (
     <span className="energy">
@@ -26,8 +56,13 @@ function PokemonCard({ p, onClick, index = 0, flat = false }) {
   const ref = useRef(null);
   const main = p.types[0];
   const theme = themeFor(main);
+<<<<<<< HEAD
   const weak = TYPE_WEAKNESS[main] || [];
   const resist = TYPE_RESISTANCE[main] || [];
+=======
+  const weak = (TYPE_WEAKNESS[main] || [])[0];
+  const resist = (TYPE_RESISTANCE[main] || [])[0];
+>>>>>>> final
 
   // Attacks are the first two API moves; damage and cost come from base stats.
   const atk1 = {
@@ -74,12 +109,19 @@ function PokemonCard({ p, onClick, index = 0, flat = false }) {
         "--from": theme.from,
         "--to": theme.to,
         "--ink": theme.ink,
+<<<<<<< HEAD
+=======
+        "--body": theme.body,
+        "--body2": theme.body2,
+        "--text": theme.text,
+>>>>>>> final
         animationDelay: flat ? undefined : `${Math.min(index, 14) * 55}ms`,
       }}
     >
       <div className="card-shine" />
       <div className="card-inner">
         <header className="card-head">
+<<<<<<< HEAD
           <h3>{p.name}</h3>
           <span className="hp">
             {p.hp}
@@ -100,6 +142,36 @@ function PokemonCard({ p, onClick, index = 0, flat = false }) {
           <b>{(p.weight / 10).toFixed(1)} kg</b>
         </p>
 
+=======
+          <span className="card-stage">{p.types.length > 1 ? "Dual type" : "Basic"}</span>
+          <h3>{p.name}</h3>
+          <span className="hp">
+            <small>HP</small>
+            {p.hp}
+          </span>
+          <i className="type-orb" title={main} style={{ background: theme.to }} />
+        </header>
+
+        {/* Artwork is clipped inside this silver frame so it can never spill out */}
+        <div className="art">
+          <img src={p.image} alt={p.name} loading="lazy" draggable="false" />
+        </div>
+        <p className="meta">
+          NO. {String(p.id).padStart(4, "0")} · {p.types.map(cap).join(" / ")} Pokémon · HT:{" "}
+          {(p.height / 10).toFixed(1)} m · WT: {(p.weight / 10).toFixed(1)} kg
+        </p>
+
+        <div className="ability">
+          <span className="badge">Ability</span>
+          <b>{cap(p.abilities[0] || "—")}</b>
+        </div>
+        {p.abilities[1] && (
+          <p className="ability-text">
+            This Pokémon can also have the {cap(p.abilities[1])} ability.
+          </p>
+        )}
+
+>>>>>>> final
         <div className="attack">
           <Energy n={atk1.cost} />
           <span className="atk-name">{atk1.name}</span>
@@ -111,23 +183,36 @@ function PokemonCard({ p, onClick, index = 0, flat = false }) {
           <span className="atk-dmg">{atk2.dmg}</span>
         </div>
 
+<<<<<<< HEAD
         <p className="flavor">
           {cap(p.abilities[0] || "—")}
           {p.abilities[1] ? ` · ${cap(p.abilities[1])}` : ""}
         </p>
 
+=======
+>>>>>>> final
         <footer className="card-foot">
           <div>
             <span>weakness</span>
             <div className="chips">
+<<<<<<< HEAD
               {weak.slice(0, 2).map((t) => (
                 <i key={t} className="chip" style={{ background: themeFor(t).to }} title={t} />
               ))}
+=======
+              {weak && (
+                <>
+                  <i className="chip" style={{ background: themeFor(weak).to }} title={weak} />
+                  <em>×2</em>
+                </>
+              )}
+>>>>>>> final
             </div>
           </div>
           <div>
             <span>resistance</span>
             <div className="chips">
+<<<<<<< HEAD
               {resist.slice(0, 2).map((t) => (
                 <i key={t} className="chip" style={{ background: themeFor(t).to }} title={t} />
               ))}
@@ -136,6 +221,20 @@ function PokemonCard({ p, onClick, index = 0, flat = false }) {
           </div>
           <div>
             <span>retreat cost</span>
+=======
+              {resist ? (
+                <>
+                  <i className="chip" style={{ background: themeFor(resist).to }} title={resist} />
+                  <em>−30</em>
+                </>
+              ) : (
+                <em>—</em>
+              )}
+            </div>
+          </div>
+          <div>
+            <span>retreat</span>
+>>>>>>> final
             <Energy n={retreat} />
           </div>
         </footer>
@@ -145,3 +244,7 @@ function PokemonCard({ p, onClick, index = 0, flat = false }) {
 }
 
 export default PokemonCard;
+<<<<<<< HEAD
+=======
+>>>>>>> 5279e85 (Initial commit from Visual SourceSafe)
+>>>>>>> final
