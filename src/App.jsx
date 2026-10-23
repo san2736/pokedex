@@ -11,10 +11,12 @@ import ErrorBox from "./ErrorBox.jsx";
 import SearchBar from "./SearchBar.jsx";
 import PokemonCard from "./PokemonCard.jsx";
 import DetailModal from "./DetailModal.jsx";
+import IntroScreen from "./IntroScreen.jsx";
+import MusicPlayer from "./MusicPlayer.jsx";
 import PowerChart from "./PowerChart.jsx";
 import "./App.css";
 
-const LIMIT = 24;
+const LIMIT = 151;
 
 // Turns the raw PokeAPI response into the small shape the UI needs.
 function clean(d) {
@@ -57,6 +59,7 @@ function App() {
 =======
   const [type, setType] = useState("all");
   const [selected, setSelected] = useState(null);
+  const [introDone, setIntroDone] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -151,7 +154,11 @@ function App() {
   }, [pokemon, search, type]);
 
   return (
-    <div className="app">
+    <>
+      {!introDone && <IntroScreen onDone={() => setIntroDone(true)} />}
+      <MusicPlayer active={introDone} />
+
+    <div className={`app ${introDone ? "" : "hold"}`}>
       <div className="blob blob-1" />
       <div className="blob blob-2" />
 
@@ -224,6 +231,7 @@ function App() {
       )}
 >>>>>>> 5279e85 (Initial commit from Visual SourceSafe)
     </div>
+    </>
   );
 }
 

@@ -118,7 +118,7 @@ function DetailModal({ p, origin, onClose }) {
     <div
       className={`overlay ${leaving ? "out" : ""} ${revealed ? "revealed" : ""}`}
       onClick={close}
-      style={{ "--from": theme.from, "--to": theme.to, "--ink": theme.ink }}
+      style={{ "--from": theme.from, "--to": theme.to, "--ink": "#1b1b2f" }}
     >
       <div className="stage">
         {/* ---- the card: back -> flip -> front ---- */}
