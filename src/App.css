@@ -699,4 +699,4 @@ body {
 
 /* type pills: count badge + greyed-out when no loaded Pokémon has that type */
 .type-pill small { margin-left: 6px; font-size: 10px; opacity: 0.75; }
-.type-pill.empty { opacity: 0.35; cursor: not-allowed; text-decoration: line-through; }
+.type-pill.no-match { opacity: 0.35; cursor: not-allowed; text-decoration: line-through; }
