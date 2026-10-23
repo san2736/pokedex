@@ -9,7 +9,7 @@ import MusicPlayer from "./MusicPlayer.jsx";
 import PowerChart from "./PowerChart.jsx";
 import "./App.css";
 
-const LIMIT = 24;
+const LIMIT = 151;
 
 // Turns the raw PokeAPI response into the small shape the UI needs.
 function clean(d) {
